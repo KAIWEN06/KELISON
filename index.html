@@ -5,8 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KELISON</title>
+    <link rel="icon"
+        href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgk_8_qKEZPza3GBK1pa4yQ8YbmoJRBmc6uYgZ907XTGZnfkeaAoUJEvaBBFCU5T8-Kl5aYUMwT4gYjdbtIL9dhqmnBgs-g6ekkTI9uXyGJY-ZkKlWI_1q4ozzrhQYCoKdh8A6iYCGYUR9iNdDBO3NbDMAYlbdzIvae1oaykl2-OcWJJRlNojIOBWtzipk/s606/ChatGPT%20Image%20Aug%2022,%202025,%2008_19_58%20PM.png"
+        type="image/jpeg">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d0d0d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            flex-direction: column;
+        }
+
+        #preloader img {
+            width: 100px;
+            height: 100px;
+            animation: spin 2s linear infinite;
+        }
+
+        #preloader span {
+            margin-top: 15px;
+            color: #f39c12;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        body.loaded #preloader {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+
         * {
             margin: 0;
             padding: 0;
@@ -274,15 +322,28 @@
             box-shadow: 0 10px 22px rgba(0, 0, 0, 0.6);
         }
 
+        .project-card {
+            background: #1c1c1c;
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            margin-bottom: 20px;
+        }
+
+
         /* Responsive for mobile */
         @media (max-width: 600px) {
             .skills {
-                gap: 15px;
+                gap: 10px;
             }
 
             .skill {
-                width: 100px;
-                padding: 12px;
+                width: 2000px;
+                padding: 19px;
             }
 
             .skill img {
@@ -305,6 +366,13 @@
 </head>
 
 <body>
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgk_8_qKEZPza3GBK1pa4yQ8YbmoJRBmc6uYgZ907XTGZnfkeaAoUJEvaBBFCU5T8-Kl5aYUMwT4gYjdbtIL9dhqmnBgs-g6ekkTI9uXyGJY-ZkKlWI_1q4ozzrhQYCoKdh8A6iYCGYUR9iNdDBO3NbDMAYlbdzIvae1oaykl2-OcWJJRlNojIOBWtzipk/s606/ChatGPT%20Image%20Aug%2022,%202025,%2008_19_58%20PM.png"
+            alt="Logo">
+        <span>Loading...</span>
+    </div>
+
     <!-- Navbar -->
     <nav>
         <div class="logo">KELISON</div>
@@ -314,7 +382,7 @@
         <ul class="nav-links" id="nav-links">
             <li><a href="#education">Pendidikan</a></li>
             <li><a href="#projects">Project</a></li>
-            <li><a href="#skills">Skills</a></li>
+            <li><a href="#skills">Software Skill</a></li>
             <li><a href="#social">Sosial Media</a></li>
         </ul>
     </nav>
@@ -325,7 +393,7 @@
                 alt="Foto Saya">
         </div>
         <div class="right">
-            <h1>Halo, Saya Kevin</h1>
+            <h1 style="color: #f39c12;">Halo, Saya Kevin</h1>
             <p>Saya seorang mahasiswa Teknik Informatika yang tertarik pada <b>Website Development</b> dan
                 <b>Fotografi</b>. Portofolio ini berisi perjalanan pendidikan, project, dan skill saya.
             </p>
@@ -337,7 +405,7 @@
         <div class="timeline">
             <div class="timeline-item left">
                 <h3>SD</h3>
-                <p>SD GMIM 06 MANADO (2013 - 2018)</p>
+                <p>SD GMIM 05 MANADO (2012 - 2018)</p>
             </div>
             <div class="timeline-item right">
                 <h3>SMP</h3>
@@ -349,18 +417,18 @@
             </div>
             <div class="timeline-item right">
                 <h3>Kuliah</h3>
-                <p>Universitas Katolik De La Salle - Teknik Informatika (2023 - sekarang)</p>
+                <p>Universitas Katolik De La Salle - Teknik Informatika (2024 - sekarang)</p>
             </div>
         </div>
     </section> <!-- Projects -->
     <!-- Projects -->
     <section id="projects">
-        <h2>Project</h2>
+        <h2>Projects</h2>
         <div class="project-card"> <img
                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVdS1tQaT_ANkG0wjizp4RaRHnu_H4BXdO8AEVtyPnwnnY8Ca83VyjItHunSZg_SR4iJLkKVX4CDQkfEB1zUOs0hpeaIoEDogXho2UY1LPw6ShuBKH03QWM2soUtd2zgx_u-FU07aVbt_pY1ZSO0VL2aZpe404vAV2oWRIRKjzGKNr77UraQ25OnD480I/s1895/Screenshot%202025-08-22%20122754.png"
                 alt="Project 1">
             <h4>Website Keche Custom Furniture</h4>
-            <p style="text-align: justify;">Website ini adalah portofolio untuk Keche Custom Furniture, menampilkan
+            <p>Website ini adalah portofolio untuk Keche Custom Furniture, menampilkan
                 berbagai produk dan layanan dengan fitur 3D desain yang bisa dilihat oleh pelangan di dalam website.
             </p>
         </div>
@@ -368,27 +436,27 @@
                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1DzW_rLiF88_b4S0iJnBt6WRXpd8PBk8NHF0xazC62XepYiqiIap-5QGKmGwX-5rQD096-29IAE3jjN6OO1dJHZWjlVbx_4pdXGk3Y847p30p9AOqkcLMY5aEbVeTjVr5l-XFiQn4ZF0b3bPr10kDFdaJCLW72l8wJ0ivqj14ue3iR8FjGNphFkCvHVM/s4160/IMG20240806233708.jpg"
                 alt="Foto 1">
             <h4>Website Portfolio K.L.S_STUDIO</h4>
-            <p style="text-align: justify;">Website portofolio untuk K.L.S_STUDIO, menampilkan hasil karya fotografi
+            <p>Website portofolio untuk K.L.S_STUDIO, menampilkan hasil karya fotografi
                 termasuk foto dan berbagai momen menarik.</p>
         </div>
         <div class="project-card"> <img
                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFsEz6wsZ5drp63PfhBMHHYrXKBY9PApEf1xIK6Aw8EhUubI4PNoZ_udbeL_QoYoJULepeMm0NTFATW7q9iq-iEese_2oDsjwJrEZvJHqkr_BHwYn3oiSVnLSwyvVLsp4_3dMViB1JLwOZJnvZLDIQMZqAZLW1ul7JJRqy-jiMiNRtFiT26h6gjrzQuSI/s4160/IMG20241016190831.jpg"
                 alt="Foto 2">
             <h4>LIVE SMANTU CUP 2024</h4>
-            <p style="text-align: justify;">live streaming untuk SMANTU CUP 2024, menampilkan pertandingan voli dan
+            <p>live streaming untuk SMANTU CUP 2024, menampilkan pertandingan voli dan
                 momen menarik selama acara berlangsung.</p>
         </div>
         <div class="project-card"> <img
                 src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuMy183uaNgNV61rklr-XKKh9auA6svz8Y2cSR0yqYMPNZyY15l7Ieg5DmlFcBzFdovlO5LqvAAR2AlZjl62ocNHaemyBsPdY5JoLivc0mCP4Yq3Fdtl9fXzuAEsVezeFHOwlJTrWDM0Z2kmGt7ItES-8HlXn1Yxn6O7fXgTszdN7y-IWLSQxmyThAwGs/s3071/IMG_20250822_155437.jpg"
                 alt="Foto 2">
             <h4>LIVE SMANTU ANNIVERSARY KE 52</h4>
-            <p style="text-align: justify;">live streaming untuk SMANTU ANNIVERSARY KE 52, menampilkan berbagai
+            <p>live streaming untuk SMANTU ANNIVERSARY KE 52, menampilkan berbagai
                 acara dan momen menarik selama perayaan berlangsung.</p>
         </div>
     </section>
     <!-- Skills -->
     <section id="skills">
-        <h2>Skills</h2>
+        <h2>Software Skill</h2>
         <div class="skills">
             <div class="skill"> <img
                     src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg"
@@ -432,6 +500,10 @@
                     alt="Shutterstock" style="filter: none;"> <span>Shutterstock</span> </a> </div>
     </section>
     <script>
+        // Tunggu sampai semua konten termasuk gambar selesai dimuat
+        window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+        });
         // Hamburger toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('nav-links');
@@ -462,4 +534,3 @@
 </body>
 
 </html>
-
