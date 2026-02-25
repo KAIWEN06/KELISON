@@ -222,6 +222,44 @@ section h2::after{
     transform:translateY(-6px);
 }
 
+  /* =========================
+   LUXURY ICON EFFECT
+========================= */
+
+/* Skill Icons */
+.skill img{
+    width:50px;
+    height:50px;
+    margin-bottom:10px;
+    filter: grayscale(100%) brightness(0.9);
+    transition: all 0.4s ease;
+}
+
+.skill:hover img{
+    filter: grayscale(0%) brightness(1.1);
+    transform: scale(1.1);
+    drop-shadow: 0 0 8px #f39c12;
+}
+
+/* Social Icons */
+.social-card img{
+    width:28px;
+    height:28px;
+    filter: grayscale(100%) brightness(0.9);
+    transition: all 0.4s ease;
+}
+
+.social-card:hover img{
+    filter: grayscale(0%) brightness(1.2);
+    transform: scale(1.15);
+}
+
+/* Gold glow on hover */
+.social-card:hover,
+.skill:hover{
+    border:1px solid #f39c12;
+    box-shadow: 0 0 12px rgba(243,156,18,0.4);
+}
 /* Responsive */
 @media(max-width:900px){
     .project-grid{grid-template-columns:1fr;}
@@ -397,4 +435,5 @@ sec.classList.add("show");
 
 </body>
 </html>
+
 
