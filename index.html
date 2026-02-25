@@ -47,21 +47,16 @@ body{
     color:#f5f5f5;
     line-height:1.6;
 }
+a{text-decoration:none;color:inherit}
+img{max-width:100%;border-radius:10px}
 
-/* Gold Accent */
 :root{
-    --gold:#d4af37;
-}
-
-section h2::after{
-    background:var(--gold);
+    --gold:#f39c12;
 }
 
 /* Navbar */
 nav{
     position:fixed;
-    top:0;
-    left:0;
     width:100%;
     background:#111;
     display:flex;
@@ -69,30 +64,24 @@ nav{
     align-items:center;
     padding:15px 10%;
     z-index:1000;
-    box-shadow:0 0 10px rgba(0,0,0,0.6);
 }
-
 nav .logo{
-    font-weight:600;
-    font-size:1.2rem;
     color:var(--gold);
+    font-weight:600;
 }
-
 .nav-links{
+    list-style:none;
     display:flex;
     gap:25px;
-    list-style:none;
 }
-
-.nav-links li a{
-    color:#f5f5f5;
-    transition:.3s;
-    padding-bottom:6px;
+.nav-links a{
+    color:#fff;
     border-bottom:2px solid transparent;
+    padding-bottom:5px;
+    transition:.3s;
 }
-
-.nav-links li a:hover,
-.nav-links li a.active{
+.nav-links a:hover,
+.nav-links a.active{
     color:var(--gold);
     border-color:var(--gold);
 }
@@ -103,59 +92,94 @@ header{
     align-items:center;
     justify-content:center;
     min-height:100vh;
-    padding:100px 10% 50px;
+    padding:100px 10%;
+    gap:40px;
     background:linear-gradient(120deg,#141414,#1e1e1e);
-    gap:30px;
 }
-
-header .left img{
+header img{
     width:300px;
     height:300px;
     object-fit:cover;
     border-radius:50%;
     border:4px solid var(--gold);
 }
-
-header .right h1{
-    font-size:2.5rem;
+header h1{
     color:var(--gold);
+    font-size:2.5rem;
 }
 
-/* Section */
+/* Sections */
 section{
     padding:80px 10%;
-    scroll-margin-top:100px;
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
 }
-
+section.show{
+    opacity:1;
+    transform:translateY(0);
+}
 section h2{
     text-align:center;
-    font-size:2rem;
     margin-bottom:40px;
+    font-size:2rem;
     position:relative;
 }
-
 section h2::after{
     content:'';
     display:block;
     width:60px;
     height:3px;
+    background:var(--gold);
     margin:10px auto;
-    border-radius:2px;
 }
 
-/* Project Card */
+/* Education */
+.timeline-item{
+    margin-bottom:20px;
+}
+
+/* Projects */
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:30px;
+}
 .project-card{
     background:#1c1c1c;
     padding:20px;
     border-radius:15px;
-    box-shadow:0 0 10px rgba(0,0,0,0.5);
     transition:.3s;
-    margin-bottom:20px;
 }
-
 .project-card:hover{
     transform:translateY(-8px);
     border:1px solid var(--gold);
+}
+.project-card h4{
+    color:var(--gold);
+    margin:10px 0;
+}
+.badge{
+    background:var(--gold);
+    color:#000;
+    padding:4px 8px;
+    font-size:.7rem;
+    border-radius:5px;
+    display:inline-block;
+    margin-bottom:10px;
+}
+.tech{
+    font-size:.85rem;
+    color:#aaa;
+    margin-top:10px;
+}
+.project-btn{
+    display:inline-block;
+    margin-top:15px;
+    padding:8px 14px;
+    background:var(--gold);
+    color:#000;
+    border-radius:6px;
 }
 
 /* Skills */
@@ -165,7 +189,6 @@ section h2::after{
     justify-content:center;
     gap:30px;
 }
-
 .skill{
     background:#1c1c1c;
     padding:20px;
@@ -174,10 +197,9 @@ section h2::after{
     text-align:center;
     transition:.3s;
 }
-
 .skill:hover{
-    transform:scale(1.05);
     border:1px solid var(--gold);
+    transform:scale(1.05);
 }
 
 /* Social */
@@ -185,35 +207,26 @@ section h2::after{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
     gap:20px;
-    max-width:900px;
-    margin:30px auto 0;
 }
-
 .social-card{
     background:#161616;
     padding:20px;
-    border-radius:16px;
+    border-radius:15px;
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:10px;
     transition:.3s;
 }
-
 .social-card:hover{
-    transform:translateY(-6px);
     border:1px solid var(--gold);
+    transform:translateY(-6px);
 }
 
 /* Responsive */
-@media(max-width:768px){
-    header{
-        flex-direction:column;
-        text-align:center;
-    }
-    header .left img{
-        width:180px;
-        height:180px;
-    }
+@media(max-width:900px){
+    .project-grid{grid-template-columns:1fr;}
+    header{flex-direction:column;text-align:center;}
+    header img{width:180px;height:180px;}
 }
 </style>
 </head>
@@ -222,7 +235,7 @@ section h2::after{
 
 <nav>
 <div class="logo">KELISON</div>
-<ul class="nav-links" id="nav-links">
+<ul class="nav-links">
 <li><a href="#education">Pendidikan</a></li>
 <li><a href="#projects">Project</a></li>
 <li><a href="#skills">Software Skill</a></li>
@@ -231,10 +244,8 @@ section h2::after{
 </nav>
 
 <header>
-<div class="left">
 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhS3FmeOFjEvL3bi_hJaWxRCbxoHtTRNZKxeSe0a4tzOb9VdIi_yA-rvHJcj0KK6SOjavUpG2_yvOWVSNxS6jHO-1Pq0gNYKAy_4e0ZVBiWFZqie5FrghtWAoMN39TXaUr2JNBl30ev-9bTK3rKj8-aVUwfSRPjgza40db40fBRtfBjsUAc1dGRBUfCrMQ/s3001/pp.jpg" alt="Foto Kevin Lionel Sondakh">
-</div>
-<div class="right">
+<div>
 <h1>Kevin Lionel Sondakh</h1>
 <h2 style="font-weight:400;color:#ccc;">
 Mahasiswa Teknik Informatika | Web Developer | Creative Digital
@@ -242,157 +253,103 @@ Mahasiswa Teknik Informatika | Web Developer | Creative Digital
 </div>
 </header>
 
-<!-- SECTION tetap sama seperti milik kamu -->
-  <body> <!-- PRELOADER -->
-    <div id="preloader"> <img
-            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj2BC6UgzMW_zILbkLJa6EumKg1G6xHq5kLZeHf0Y2GMJducyBJ1XsBOmPCbSdYu1C0JFTZHKBHuXYkg5iXy8n3RHEiOC0H0tKeJo4Jsr7UqndJUSnqNJApju3XBsEvNvgkEpwJAUDFR7azOiym6k0aXhO31nk-XXCWXB9vm0tjc_K98hexjWu_IUao014/s328/lgo.png"
-            alt="Logo"> <span>SABAR CUY...</span> </div> <!-- Navbar -->
-    <nav>
-        <div class="logo">KELISON</div>
-        <div class="hamburger" id="hamburger"> <span></span><span></span><span></span> </div>
-        <ul class="nav-links" id="nav-links">
-            <li><a href="#education">Pendidikan</a></li>
-            <li><a href="#projects">Project</a></li>
-            <li><a href="#skills">Software Skill</a></li>
-            <li><a href="#social">Sosial Media</a></li>
-        </ul>
-    </nav> <!-- Hero Section -->
-    <header>
-        <div class="left"> <img
-                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhS3FmeOFjEvL3bi_hJaWxRCbxoHtTRNZKxeSe0a4tzOb9VdIi_yA-rvHJcj0KK6SOjavUpG2_yvOWVSNxS6jHO-1Pq0gNYKAy_4e0ZVBiWFZqie5FrghtWAoMN39TXaUr2JNBl30ev-9bTK3rKj8-aVUwfSRPjgza40db40fBRtfBjsUAc1dGRBUfCrMQ/s3001/pp.jpg"
-                alt="Foto Kevin Lionel Sondakh"> </div>
-        <div class="right">
-            <h1 style="color: #f39c12;"> Kevin Lionel Sondakh </h1>
-            <h2 style="font-weight:400; font-size:1.2rem; color:#ccc;"> Mahasiswa Teknik Informatika | Web Developer |
-                Creative Digital </h2>
-        </div>
-    </header>
-    <section id="about">
-        <h2>Tentang Kevin Lionel Sondakh</h2>
-        <p> Kevin Lionel Sondakh adalah mahasiswa Teknik Informatika di Universitas Katolik De La Salle Manado yang
-            aktif mengembangkan website, portfolio digital, dan project kreatif berbasis teknologi di Manado, Indonesia.
-        </p>
-    </section> <!-- Education -->
-    <section id="education">
-        <h2>Riwayat Pendidikan</h2>
-        <div class="timeline">
-            <div class="timeline-item left">
-                <h3>SD</h3>
-                <p>SD GMIM 05 MANADO (2012 - 2018)</p>
-            </div>
-            <div class="timeline-item right">
-                <h3>SMP</h3>
-                <p>SMP Negeri 1 Manado (2018 - 2021)</p>
-            </div>
-            <div class="timeline-item left">
-                <h3>SMA</h3>
-                <p>SMA Negeri 7 Manado (2021 - 2024)</p>
-            </div>
-            <div class="timeline-item right">
-                <h3>Kuliah</h3>
-                <p>Universitas Katolik De La Salle - Teknik Informatika (2024 - sekarang)</p>
-            </div>
-        </div>
-    </section> <!-- Projects --> <!-- Projects -->
-    <section id="projects">
-        <h2>Project</h2>
-        <div class="project-card"> <img
-                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVdS1tQaT_ANkG0wjizp4RaRHnu_H4BXdO8AEVtyPnwnnY8Ca83VyjItHunSZg_SR4iJLkKVX4CDQkfEB1zUOs0hpeaIoEDogXho2UY1LPw6ShuBKH03QWM2soUtd2zgx_u-FU07aVbt_pY1ZSO0VL2aZpe404vAV2oWRIRKjzGKNr77UraQ25OnD480I/s1895/Screenshot%202025-08-22%20122754.png"
-                alt="Project 1">
-            <h4>Website Keche Custom Furniture</h4>
-            <p>Website ini adalah portofolio untuk Keche Custom Furniture, menampilkan berbagai produk dan layanan
-                dengan fitur 3D desain yang bisa dilihat oleh pelangan di dalam website. </p>
-        </div>
-        <div class="project-card"> <img
-                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1DzW_rLiF88_b4S0iJnBt6WRXpd8PBk8NHF0xazC62XepYiqiIap-5QGKmGwX-5rQD096-29IAE3jjN6OO1dJHZWjlVbx_4pdXGk3Y847p30p9AOqkcLMY5aEbVeTjVr5l-XFiQn4ZF0b3bPr10kDFdaJCLW72l8wJ0ivqj14ue3iR8FjGNphFkCvHVM/s4160/IMG20240806233708.jpg"
-                alt="Foto 1">
-            <h4>Website Portfolio K.L.S_STUDIO</h4>
-            <p>Website portofolio untuk K.L.S_STUDIO, menampilkan hasil karya fotografi termasuk foto dan berbagai momen
-                menarik.</p>
-        </div>
-        <div class="project-card"> <img
-                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFsEz6wsZ5drp63PfhBMHHYrXKBY9PApEf1xIK6Aw8EhUubI4PNoZ_udbeL_QoYoJULepeMm0NTFATW7q9iq-iEese_2oDsjwJrEZvJHqkr_BHwYn3oiSVnLSwyvVLsp4_3dMViB1JLwOZJnvZLDIQMZqAZLW1ul7JJRqy-jiMiNRtFiT26h6gjrzQuSI/s4160/IMG20241016190831.jpg"
-                alt="Foto 2">
-            <h4>LIVE SMANTU CUP 2024</h4>
-            <p>live streaming untuk SMANTU CUP 2024, menampilkan pertandingan voli dan momen menarik selama acara
-                berlangsung.</p>
-        </div>
-        <div class="project-card"> <img
-                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuMy183uaNgNV61rklr-XKKh9auA6svz8Y2cSR0yqYMPNZyY15l7Ieg5DmlFcBzFdovlO5LqvAAR2AlZjl62ocNHaemyBsPdY5JoLivc0mCP4Yq3Fdtl9fXzuAEsVezeFHOwlJTrWDM0Z2kmGt7ItES-8HlXn1Yxn6O7fXgTszdN7y-IWLSQxmyThAwGs/s3071/IMG_20250822_155437.jpg"
-                alt="Foto 2">
-            <h4>LIVE SMANTU ANNIVERSARY KE 52</h4>
-            <p>live streaming untuk SMANTU ANNIVERSARY KE 52, menampilkan berbagai acara dan momen menarik selama
-                perayaan berlangsung.</p>
-        </div>
-    </section> <!-- Skills -->
-    <section id="skills">
-        <h2>Software Skill</h2>
-        <div class="skills">
-            <div class="skill"> <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg"
-                    alt="Premiere Pro">
-                <p style="white-space: nowrap;">Premiere Pro</p>
-            </div>
-            <div class="skill"> <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Adobe_After_Effects_CC_icon.svg"
-                    alt="After Effects">
-                <p style="white-space: nowrap;">After Effects</p>
-            </div>
-            <div class="skill"> <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Adobe_Audition_CC_icon_%282020%29.svg/330px-Adobe_Audition_CC_icon_%282020%29.svg.png"
-                    alt="Audition">
-                <p style="white-space: nowrap;">Adobe Audition</p>
-            </div>
-            <div class="skill"> <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/DaVinci_Resolve_Studio.png/330px-DaVinci_Resolve_Studio.png"
-                    alt="Davinci Resolve">
-                <p style="white-space: nowrap;">DaVinci Resolve</p>
-            </div>
-        </div>
-    </section> <!-- Social Media -->
-    <section id="social">
-        <h2>Social Media</h2>
-        <div class="social-grid"> <a class="social-card"
-                href="https://www.instagram.com/k_vin.378?igsh=enI0anQzbDRuZ3pz" target="_blank" aria-label="Instagram">
-                <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram"
-                    style="filter: none;"> <span>Instagram</span> </a> <a class="social-card"
-                href="https://www.facebook.com/share/1CUkpaaHCH/" target="_blank" aria-label="Facebook"> <img
-                    src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" style="filter: none;">
-                <span>Facebook</span> </a> <a class="social-card" href="https://github.com/KAIWEN06" target="_blank"
-                aria-label="GitHub"> <img src="https://cdn-icons-png.flaticon.com/512/2111/2111432.png" alt="GitHub">
-                <span>GitHub</span> </a> <a class="social-card" href="https://vercel.com/kaiwen06s-projects"
-                target="_blank" aria-label="Vercel"> <img
-                    src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png" alt="Vercel">
-                <span>Vercel</span> </a> <a class="social-card"
-                href="https://www.shutterstock.com/en/g/KLS2006?rid=275086507" target="_blank"
-                aria-label="Shutterstock"> <img
-                    src="https://images.icon-icons.com/2429/PNG/512/shutterstock_logo_icon_147239.png"
-                    alt="Shutterstock" style="filter: none;"> <span>Shutterstock</span> </a> <a class="social-card"
-                href="https://www.linkedin.com/in/kevin-lionel-sondakh-8a1324229/" target="_blank"
-                aria-label="LinkedIn"> <img src="https://cdn-icons-png.flaticon.com/512/3536/3536505.png" alt="LinkedIn"
-                    style="filter: none;"> <span>LinkedIn</span> </a> </div>
-    </section>
-</body>
+<section id="education">
+<h2>Riwayat Pendidikan</h2>
+<div class="timeline-item"><h3>SD</h3><p>SD GMIM 05 MANADO (2012 - 2018)</p></div>
+<div class="timeline-item"><h3>SMP</h3><p>SMP Negeri 1 Manado (2018 - 2021)</p></div>
+<div class="timeline-item"><h3>SMA</h3><p>SMA Negeri 7 Manado (2021 - 2024)</p></div>
+<div class="timeline-item"><h3>Kuliah</h3><p>Universitas Katolik De La Salle - Teknik Informatika (2024 - sekarang)</p></div>
+</section>
 
-<!-- SCRIPT FIXED -->
+<section id="projects">
+<h2>Project</h2>
+<div class="project-grid">
+
+<div class="project-card">
+<span class="badge">Client Project</span>
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhN8YE4Iz3G25wLcPmxJ4R0VlF4X5zIQGKLJluEjmhbmXHeUiMPxL6YWdXt7efI5iB8Lfb-x1vfKxiS0HGuz9_Vx4yy3g57MZE0VF7KYhO-oSM8bSC-g_Nq4k3ih_Swsv_epdT-TSf-WlyT9lzik-_TMg7hSWCLJzhyphenhyphen6XZqN8JBnJ7TnSMf9EnKiuLTPME/s1898/KAIRAGI.png">
+<h4>Website Kavling Poliland Kairagi</h4>
+<p>Website resmi untuk Kavling Poliland Kairagi menampilkan informasi kavling dan kontak.</p>
+<div class="tech">HTML • CSS • Responsive</div>
+<a href="https://www.kavlingpolilandkairagi.com/" target="_blank" class="project-btn">Lihat Website</a>
+</div>
+
+<div class="project-card">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgVdS1tQaT_ANkG0wjizp4RaRHnu_H4BXdO8AEVtyPnwnnY8Ca83VyjItHunSZg_SR4iJLkKVX4CDQkfEB1zUOs0hpeaIoEDogXho2UY1LPw6ShuBKH03QWM2soUtd2zgx_u-FU07aVbt_pY1ZSO0VL2aZpe404vAV2oWRIRKjzGKNr77UraQ25OnD480I/s1895/Screenshot%202025-08-22%20122754.png">
+<h4>Website Keche Custom Furniture</h4>
+<p>Website portofolio dengan fitur 3D desain interaktif.</p>
+<div class="tech">HTML • CSS • 3D Viewer</div>
+</div>
+
+<div class="project-card">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg1DzW_rLiF88_b4S0iJnBt6WRXpd8PBk8NHF0xazC62XepYiqiIap-5QGKmGwX-5rQD096-29IAE3jjN6OO1dJHZWjlVbx_4pdXGk3Y847p30p9AOqkcLMY5aEbVeTjVr5l-XFiQn4ZF0b3bPr10kDFdaJCLW72l8wJ0ivqj14ue3iR8FjGNphFkCvHVM/s4160/IMG20240806233708.jpg">
+<h4>Website Portfolio K.L.S_STUDIO</h4>
+<p>Website fotografi dan dokumentasi kreatif.</p>
+<div class="tech">HTML • CSS • Gallery</div>
+</div>
+
+<div class="project-card">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiFsEz6wsZ5drp63PfhBMHHYrXKBY9PApEf1xIK6Aw8EhUubI4PNoZ_udbeL_QoYoJULepeMm0NTFATW7q9iq-iEese_2oDsjwJrEZvJHqkr_BHwYn3oiSVnLSwyvVLsp4_3dMViB1JLwOZJnvZLDIQMZqAZLW1ul7JJRqy-jiMiNRtFiT26h6gjrzQuSI/s4160/IMG20241016190831.jpg">
+<h4>LIVE SMANTU CUP 2024</h4>
+<p>Produksi live streaming pertandingan voli.</p>
+<div class="tech">OBS • Live Production</div>
+</div>
+
+<div class="project-card">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjuMy183uaNgNV61rklr-XKKh9auA6svz8Y2cSR0yqYMPNZyY15l7Ieg5DmlFcBzFdovlO5LqvAAR2AlZjl62ocNHaemyBsPdY5JoLivc0mCP4Yq3Fdtl9fXzuAEsVezeFHOwlJTrWDM0Z2kmGt7ItES-8HlXn1Yxn6O7fXgTszdN7y-IWLSQxmyThAwGs/s3071/IMG_20250822_155437.jpg">
+<h4>LIVE SMANTU ANNIVERSARY KE 52</h4>
+<p>Live streaming dan dokumentasi event.</p>
+<div class="tech">Event Streaming</div>
+</div>
+
+</div>
+</section>
+
+<section id="skills">
+<h2>Software Skill</h2>
+<div class="skills">
+<div class="skill"><p>Premiere Pro</p></div>
+<div class="skill"><p>After Effects</p></div>
+<div class="skill"><p>Adobe Audition</p></div>
+<div class="skill"><p>DaVinci Resolve</p></div>
+</div>
+</section>
+
+<section id="social">
+<h2>Social Media</h2>
+<div class="social-grid">
+<a class="social-card" href="https://www.instagram.com/k_vin.378" target="_blank">Instagram</a>
+<a class="social-card" href="https://github.com/KAIWEN06" target="_blank">GitHub</a>
+<a class="social-card" href="https://www.linkedin.com/in/kevin-lionel-sondakh-8a1324229/" target="_blank">LinkedIn</a>
+<a class="social-card" href="https://vercel.com/kaiwen06s-projects" target="_blank">Vercel</a>
+<a class="social-card" href="https://www.shutterstock.com/g/KLS2006?rid=275086507" target="_blank">Shutterstock</a>
+</div>
+</section>
+
 <script>
-const navItems = document.querySelectorAll('.nav-links a');
-const sections = document.querySelectorAll('section');
+const sections=document.querySelectorAll("section");
+const navLinks=document.querySelectorAll(".nav-links a");
 
-window.addEventListener('scroll',()=>{
-    let current='';
-    sections.forEach(section=>{
-        const sectionTop=section.offsetTop-120;
-        if(pageYOffset>=sectionTop){
-            current=section.getAttribute('id');
-        }
-    });
-    navItems.forEach(a=>{
-        a.classList.remove('active');
-        if(a.getAttribute('href')==='#'+current){
-            a.classList.add('active');
-        }
-    });
+window.addEventListener("scroll",()=>{
+let current="";
+sections.forEach(sec=>{
+const top=sec.offsetTop-150;
+if(pageYOffset>=top){
+current=sec.getAttribute("id");
+}
+});
+navLinks.forEach(a=>{
+a.classList.remove("active");
+if(a.getAttribute("href")==="#"+current){
+a.classList.add("active");
+}
+});
+sections.forEach(sec=>{
+const top=sec.getBoundingClientRect().top;
+if(top<window.innerHeight-100){
+sec.classList.add("show");
+}
+});
 });
 </script>
 
