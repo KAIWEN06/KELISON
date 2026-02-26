@@ -32,13 +32,13 @@
     "@type": "PostalAddress",
     "addressLocality": "Manado",
     "addressCountry": "Indonesia"
-  }
+  },
   "knowsAbout": [
-  "Web Development",
-  "Creative Digital Production",
-  "Live Streaming Production",
-  "Branding & SEO"
-]
+    "Web Development",
+    "Creative Digital Production",
+    "Live Streaming Production",
+    "Branding & SEO"
+  ]
 }
 </script>
 
@@ -56,11 +56,9 @@ body{
 a{text-decoration:none;color:inherit}
 img{max-width:100%;border-radius:10px}
 
-:root{
-    --gold:#f39c12;
-}
+:root{--gold:#f39c12}
 
-/* Navbar */
+/* NAVBAR */
 nav{
     position:fixed;
     width:100%;
@@ -71,10 +69,8 @@ nav{
     padding:15px 10%;
     z-index:1000;
 }
-nav .logo{
-    color:var(--gold);
-    font-weight:600;
-}
+.logo{color:var(--gold);font-weight:600}
+
 .nav-links{
     list-style:none;
     display:flex;
@@ -92,7 +88,20 @@ nav .logo{
     border-color:var(--gold);
 }
 
-/* Hero */
+/* HAMBURGER */
+.hamburger{
+    display:none;
+    flex-direction:column;
+    cursor:pointer;
+    gap:5px;
+}
+.hamburger span{
+    width:25px;
+    height:3px;
+    background:var(--gold);
+}
+
+/* HERO */
 header{
     display:flex;
     align-items:center;
@@ -109,17 +118,14 @@ header img{
     border-radius:50%;
     border:4px solid var(--gold);
 }
-header h1{
-    color:var(--gold);
-    font-size:2.5rem;
-}
+header h1{color:var(--gold);font-size:2.5rem}
 
-/* Sections */
+/* SECTION */
 section{
     padding:80px 10%;
     opacity:0;
     transform:translateY(40px);
-    transition:all .8s ease;
+    transition:.8s;
 }
 section.show{
     opacity:1;
@@ -129,7 +135,6 @@ section h2{
     text-align:center;
     margin-bottom:40px;
     font-size:2rem;
-    position:relative;
 }
 section h2::after{
     content:'';
@@ -140,12 +145,7 @@ section h2::after{
     margin:10px auto;
 }
 
-/* Education */
-.timeline-item{
-    margin-bottom:20px;
-}
-
-/* Projects */
+/* PROJECT */
 .project-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -161,10 +161,7 @@ section h2::after{
     transform:translateY(-8px);
     border:1px solid var(--gold);
 }
-.project-card h4{
-    color:var(--gold);
-    margin:10px 0;
-}
+.project-card h4{color:var(--gold);margin:10px 0}
 .badge{
     background:var(--gold);
     color:#000;
@@ -174,11 +171,7 @@ section h2::after{
     display:inline-block;
     margin-bottom:10px;
 }
-.tech{
-    font-size:.85rem;
-    color:#aaa;
-    margin-top:10px;
-}
+.tech{font-size:.85rem;color:#aaa;margin-top:10px}
 .project-btn{
     display:inline-block;
     margin-top:15px;
@@ -188,7 +181,7 @@ section h2::after{
     border-radius:6px;
 }
 
-/* Skills */
+/* SKILLS */
 .skills{
     display:flex;
     flex-wrap:wrap;
@@ -207,8 +200,13 @@ section h2::after{
     border:1px solid var(--gold);
     transform:scale(1.05);
 }
+.skill img{
+    width:50px;
+    height:50px;
+    margin-bottom:10px;
+}
 
-/* Social */
+/* SOCIAL */
 .social-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -227,55 +225,31 @@ section h2::after{
     border:1px solid var(--gold);
     transform:translateY(-6px);
 }
-
-  /* =========================
-   LUXURY ICON EFFECT
-========================= */
-
-/* Skill Icons */
-.skill img{
-    width:50px;
-    height:50px;
-    margin-bottom:10px;
-    filter: grayscale(100%) brightness(0.9);
-    transition: all 0.4s ease;
-}
-
-.skill:hover img{
-    filter: grayscale(0%) brightness(1.1);
-    transform: scale(1.1);
-    drop-shadow: 0 0 8px #f39c12;
-}
-
-/* Social Icons */
 .social-card img{
     width:28px;
-    height:28px;
-    filter: grayscale(100%) brightness(0.9);
-    transition: all 0.4s ease;
 }
 
-.social-card:hover img{
-    filter: grayscale(0%) brightness(1.2);
-    transform: scale(1.15);
-}
-
-/* Gold glow on hover */
-.social-card:hover,
-.skill:hover{
-    border:1px solid #f39c12;
-    box-shadow: 0 0 12px rgba(243,156,18,0.4);
-}
-/* Responsive */
+/* RESPONSIVE */
 @media(max-width:900px){
     .project-grid{grid-template-columns:1fr;}
     header{flex-direction:column;text-align:center;}
     header img{width:180px;height:180px;}
 }
-  .skill img{
-    width:50px;
-    height:50px;
-    margin-bottom:10px;
+
+@media(max-width:768px){
+    .nav-links{
+        position:absolute;
+        top:70px;
+        right:10%;
+        background:#111;
+        flex-direction:column;
+        width:200px;
+        padding:20px;
+        border-radius:10px;
+        display:none;
+    }
+    .nav-links.active{display:flex}
+    .hamburger{display:flex}
 }
 </style>
 </head>
@@ -284,7 +258,12 @@ section h2::after{
 
 <nav>
 <div class="logo">KELISON</div>
-<ul class="nav-links">
+<div class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<ul class="nav-links" id="nav-links">
 <li><a href="#education">Pendidikan</a></li>
 <li><a href="#projects">Project</a></li>
 <li><a href="#skills">Software Skill</a></li>
@@ -441,26 +420,30 @@ tetapi juga memiliki nilai strategis.
 </section>
 
 <script>
+const hamburger=document.getElementById("hamburger");
+const navLinks=document.getElementById("nav-links");
+
+hamburger.addEventListener("click",()=>{
+navLinks.classList.toggle("active");
+});
+
 const sections=document.querySelectorAll("section");
-const navLinks=document.querySelectorAll(".nav-links a");
+const navItems=document.querySelectorAll(".nav-links a");
 
 window.addEventListener("scroll",()=>{
 let current="";
 sections.forEach(sec=>{
 const top=sec.offsetTop-150;
-if(pageYOffset>=top){
-current=sec.getAttribute("id");
-}
+if(pageYOffset>=top){current=sec.id}
 });
-navLinks.forEach(a=>{
+navItems.forEach(a=>{
 a.classList.remove("active");
 if(a.getAttribute("href")==="#"+current){
 a.classList.add("active");
 }
 });
 sections.forEach(sec=>{
-const top=sec.getBoundingClientRect().top;
-if(top<window.innerHeight-100){
+if(sec.getBoundingClientRect().top<window.innerHeight-100){
 sec.classList.add("show");
 }
 });
@@ -469,6 +452,7 @@ sec.classList.add("show");
 
 </body>
 </html>
+
 
 
 
